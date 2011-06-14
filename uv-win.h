@@ -93,6 +93,22 @@ typedef struct uv_buf_t {
   /* char to avoid alignment issues */    \
   char volatile async_sent;
 
+#define UV_ARES_ACTION_PRIVATE_FIELDS     \
+  struct uv_req_s ares_req;               \
+  SOCKET sock;                            \
+  int read;                               \
+  int write;
+
+#define UV_ARES_TASK_PRIVATE_FIELDS       \
+  uv_ares_task_t* ares_prev;              \
+  uv_ares_task_t* ares_next;              \
+  struct uv_req_s ares_req;               \
+  SOCKET sock;                            \
+  HANDLE h_wait;                          \
+  WSAEVENT h_event;                       \
+  HANDLE h_close_event;
+
+
 #define UV_PREPARE_PRIVATE_FIELDS /* empty */
 #define UV_CHECK_PRIVATE_FIELDS   /* empty */
 #define UV_IDLE_PRIVATE_FIELDS    /* empty */
