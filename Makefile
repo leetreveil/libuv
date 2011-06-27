@@ -18,9 +18,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
-
-ifneq (,$(findstring MINGW,$(uname_S)))
+ifneq ($(SystemRoot),)
 include config-mingw.mk
 else
 include config-unix.mk
